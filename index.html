@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería [Tu Nombre]</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cafetería White Coffe</div>
+            <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button> <!-- Botón hamburguesa -->
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#nosotros">Sobre Nosotros</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>Bienvenido a Nuestra Cafetería</h1>
+                <p>Disfruta de la mejor experiencia de café en un ambiente acogedor.</p>
+                <a href="#menu" class="btn">Ver Menú</a>
+            </div>
+        </section>
+
+        <section id="menu" class="section-padded">
+            <h2>Nuestro Menú</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Cafés Especiales</h3>
+                    <p>Espresso, Cappuccino, Latte, Americano</p>
+                    <span>₲s35.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Repostería</h3>
+                    <p>Croissants, Muffins, Brownies, Tartas</p>
+                    <span>₲s20.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Bebidas Frías</h3>
+                    <p>Iced Latte, Frappuccino, Smoothies</p>
+                    <span>₲s25.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Bocadillos</h3>
+                    <p>Sándwiches, Ensaladas frescas</p>
+                    <span>₲s15.000</span>
+                </div>
+            </div>
+            <p class="menu-note">Consulta nuestro menú completo en la cafetería.</p>
+        </section>
+
+        <section id="nosotros" class="section-padded">
+            <h2>Sobre Nosotros</h2>
+            <div class="nosotros-content">
+                <p>En [Tu Nombre de Cafetería], nos apasiona el buen café y crear un espacio donde te sientas como en casa. Seleccionamos granos de alta calidad y preparamos cada bebida con dedicación. Más que una cafetería, somos un punto de encuentro para la comunidad, un lugar para relajarse, trabajar o compartir momentos especiales.</p>
+                <p>Nuestra misión es ofrecerte no solo una taza de café excepcional, sino también una experiencia inolvidable. ¡Te esperamos!</p>
+            </div>
+        </section>
+
+        <section id="galeria" class="section-padded">
+            <h2>Galería</h2>
+            <div class="gallery-grid">
+                <img src="./img/fondo-cafeteria.jpg" alt="Interior de la cafetería">
+                <img src="./img/cafe-preparado.jpg" alt="Café preparado">
+                <img src="./img/reposteria.jpg" alt="Repostería fresca">
+                <img src="./img/ambiente.png" alt="Ambiente acogedor">
+                <img src="./img/barista.jpg" alt="Barista preparando café">
+                <img src="./img/detalle.jpg" alt="Detalle de la decoración">
+            </div>
+            <p class="gallery-note">Reemplaza estas imágenes con fotos reales de tu cafetería.</p>
+        </section>
+
+        <section id="contacto" class="section-padded">
+            <h2>Contacto</h2>
+            <div class="contact-methods">
+                <div class="contact-whatsapp">
+                    <h3>Contáctanos por WhatsApp</h3>
+                    <p>Haz clic para enviarnos un mensaje directo.</p>
+                    <a href="https://wa.me/1651651651?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20su%20cafetería." target="_blank" class="btn whatsapp-btn">Enviar WhatsApp</a>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                    <p class="form-note">Nota: Este formulario es solo una maqueta visual. Para que funcione realmente y reciba los mensajes, necesitarás integrarlo con un servicio de backend (como Formspree, Netlify Forms, o un script del lado del servidor).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ubicacion" class="section-padded">
+            <h2>Ubicación</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.729107931327!2d-57.5256247!3d-25.263884899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945fbd13c8f2b7f7%3A0xc6c7b3c2e1f2b2e8!2sAsunci%C3%B3n!5e0!3m2!1ses!2spy!4v1700000000000!5m2!1ses!2spy"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <p class="address">
+                Dirección: [Tu Dirección Completa], [Tu Ciudad], [Tu País]<br>
+                Horario: Lunes a Viernes: 8:00 AM - 8:00 PM | Sábados: 9:00 AM - 6:00 PM | Domingos: Cerrado
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cafetería Marcegonz19. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
