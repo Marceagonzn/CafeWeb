@@ -27,6 +27,11 @@ body {
     overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
+/* Evita el scroll cuando el menú móvil está abierto */
+body.no-scroll {
+    overflow: hidden;
+}
+
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -100,16 +105,16 @@ nav {
     color: var(--accent-color);
 }
 
-nav ul {
+nav ul.main-nav {
     list-style: none;
     display: flex;
 }
 
-nav ul li {
+nav ul.main-nav li {
     margin-left: 2em;
 }
 
-nav ul li a {
+nav ul.main-nav li a {
     color: var(--primary-text-color);
     font-weight: 400;
     font-size: 1.1em;
@@ -117,7 +122,7 @@ nav ul li a {
     position: relative;
 }
 
-nav ul li a::after {
+nav ul.main-nav li a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -128,9 +133,82 @@ nav ul li a::after {
     transition: width 0.3s ease;
 }
 
-nav ul li a:hover::after {
+nav ul.main-nav li a:hover::after {
     width: 100%;
 }
+
+/* Menú de hamburguesa (oculto por defecto en escritorio) */
+.menu-toggle {
+    display: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--primary-text-color);
+    z-index: 1200;
+}
+
+/* Estilos para el menú móvil (off-canvas) */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 260px;
+    height: 100%;
+    background-color: var(--header-footer-bg);
+    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    z-index: 1100;
+    transition: right 0.3s ease-in-out;
+    padding-top: 4em;
+}
+
+.mobile-nav.open {
+    right: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 2em;
+}
+
+.mobile-nav ul li {
+    padding: 1em 1.5em;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.mobile-nav ul li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav ul li a {
+    display: block;
+    color: var(--primary-text-color);
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.mobile-nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Overlay para oscurecer el fondo cuando el menú móvil está abierto */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 /* Secciones generales */
 .section-padded {
@@ -144,7 +222,7 @@ nav ul li a:hover::after {
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./img/bg.jpg') no-repeat center center/cover;
     color: #fff;
-    height: 70vh;
+    height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,6 +241,55 @@ nav ul li a:hover::after {
     font-weight: 300;
 }
 
+/* Eliminar el subrayado del enlace que envuelve el botón del héroe */
+.smooth-scroll-btn {
+    text-decoration: none; /* Quita el subrayado predeterminado del enlace */
+    display: inline-block; /* Para que el enlace no ocupe todo el ancho si no es necesario */
+}
+
+/* ------------------------------------- */
+/* NUEVOS ESTILOS DEL BOTÓN DE LA SECCIÓN HERO */
+/* ------------------------------------- */
+.hero-button {
+    /* Variables */
+    --button_radius: 0.75em;
+    --button_color: var(--background-color); /* Usamos el color de fondo de la página */
+    --button_outline_color: var(--accent-color); /* Usamos el color de acento */
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--button_radius);
+    background: var(--button_outline_color);
+    margin-top: 2em; /* Espacio para separarlo del texto */
+    
+}
+
+.hero-button .button_top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 1.5em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+.hero-button:hover .button_top {
+    /* Pull the button upwards when hovered */
+    transform: translateY(-0.33em);
+}
+
+.hero-button:active .button_top {
+    /* Push the button downwards when pressed */
+    transform: translateY(0);
+}
+/* ------------------------------------- */
+
+
+/* Botones generales que ya tenías (mantenerlos para otros formularios) */
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
@@ -178,7 +305,6 @@ nav ul li a:hover::after {
 
 .btn:hover {
     background-color: #6a350f;
-    color: #fff;
     transform: translateY(-2px);
 }
 
@@ -198,10 +324,25 @@ nav ul li a:hover::after {
     text-align: left;
     transition: transform 0.2s ease;
     border: 1px solid var(--border-color);
+    /* **CAMBIO AQUÍ**: Añadimos flexbox para alinear la imagen y el texto */
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Centra el texto */
 }
 
 .menu-item:hover {
     transform: translateY(-5px);
+}
+/* **NUEVO ESTILO**: Para las imágenes dentro de menu-item */
+.menu-item img {
+    width: 100px; /* Tamaño de la miniatura */
+    height: 100px; /* Para que sea un cuadrado perfecto */
+    object-fit: cover; /* Recorta la imagen para que encaje sin distorsionarse */
+    border-radius: 50%; /* Para hacerla circular */
+    margin-bottom: 1em; /* Espacio debajo de la imagen */
+    border: 2px solid var(--accent-color); /* Borde para destacar */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
 }
 
 .menu-item h3 {
@@ -222,6 +363,8 @@ nav ul li a:hover::after {
     font-weight: 700;
     font-size: 1.1em;
     color: var(--primary-text-color);
+    margin-top: auto; /* Empuja el precio hacia abajo si el contenido varía */
+
 }
 
 .menu-note {
@@ -405,23 +548,26 @@ footer {
 /* Responsividad */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        text-align: center;
-        padding: 0 1em;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 1.5em;
+    }
+    nav ul.main-nav {
+        display: none;
     }
 
-    nav .logo {
-        margin-bottom: 1em;
+    nav .main-nav {
+        display: none;
     }
 
-    nav ul {
-        flex-direction: column;
-        margin-top: 1em;
+    .menu-toggle {
+        display: block;
+    }
+    body {
+        margin: 0;
+        padding: 0;
     }
 
-    nav ul li {
-        margin: 0.5em 0;
-    }
 
     h1 {
         font-size: 2.5em;
@@ -435,8 +581,16 @@ footer {
         height: 60vh;
     }
 
+    .hero-button { /* Ajuste del tamaño de fuente en móviles si es necesario */
+        font-size: 15px;
+    }
+
     .section-padded {
         padding: 4em 1.5em;
+    }
+    .menu-item img {
+        width: 80px; /* Un poco más pequeña en móvil */
+        height: 80px;
     }
 
     .menu-grid, .gallery-grid {
@@ -463,44 +617,90 @@ footer {
         font-size: 1.1em;
     }
 
-    .btn {
+    .btn { /* Mantenemos este estilo de botón para los otros usos si es que hay */
         padding: 0.7em 1.5em;
         font-size: 0.9em;
+    }
+
+    .hero-button { /* Aseguramos que el botón del hero se ajuste bien */
+        font-size: 14px;
+    }
+
+    .hero-button .button_top {
+        padding: 0.6em 1.2em; /* Ajuste de padding para pantallas más pequeñas */
     }
 
     .menu-item h3 {
         font-size: 1.2em;
     }
 }
-/* Botón hamburguesa */
-.menu-toggle {
-    display: none;
-    font-size: 2em;
-    background: none;
-    border: none;
-    color: var(--primary-text-color);
-    cursor: pointer;
+
+
+/* ----------Estilos para los botones flotantes---------- */
+.floating-buttons {
+    position: fixed;
+    bottom: 25px; /* Ajusta la distancia desde abajo */
+    right: 25px; /* Ajusta la distancia desde la derecha */
+    z-index: 1500; /* Asegura que estén por encima de todo */
+    display: flex; /* Para que los botones se apilen verticalmente */
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los botones */
 }
 
-/* Estilos móviles */
+.whatsapp-float,
+.scroll-to-top-float {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px; /* Tamaño del botón */
+    height: 55px; /* Tamaño del botón */
+    border-radius: 50%; /* Lo hace circular */
+    color: #fff;
+    font-size: 2em; /* Tamaño del icono */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
+    border: none; /* Quitar borde del botón */
+    text-decoration: none; /* Quitar subrayado del enlace */
+}
+
+.whatsapp-float {
+    background-color: #25D366; /* Color de WhatsApp */
+}
+
+.whatsapp-float:hover {
+    background-color: #1DA851;
+    transform: scale(1.05);
+}
+
+.scroll-to-top-float {
+    background-color: var(--accent-color); /* Usamos el color de acento de tu tema */
+    opacity: 0; /* Por defecto oculto */
+    visibility: hidden; /* Por defecto oculto */
+}
+
+.scroll-to-top-float.show {
+    opacity: 1; /* Mostrar al hacer scroll */
+    visibility: visible;
+}
+
+.scroll-to-top-float:hover {
+    background-color: #6a350f; /* Tono más oscuro al pasar el mouse */
+    transform: scale(1.05);
+}
+
+/* Responsividad para los botones flotantes */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+    .floating-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px; /* Menos espacio entre botones en móvil */
     }
 
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--header-footer-bg);
-        padding: 1em 0;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 0.5em 0;
+    .whatsapp-float,
+    .scroll-to-top-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8em;
     }
 }
